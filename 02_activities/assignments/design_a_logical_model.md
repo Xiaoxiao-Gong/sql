@@ -8,6 +8,10 @@ At the minimum it should have employee, order, sales, customer, and book entitie
 ## Question 2
 We want to create employee shifts, splitting up the day into morning and evening. Add this to the ERD.
 
+My Answer:
+This is the logical model for question 1 and 2, I put all tables together.
+![Logical model for question 1 and 2](./q1+2.drawio.png)
+
 ## Question 3
 The store wants to keep customer addresses. Propose two architectures for the CUSTOMER_ADDRESS table, one that will retain changes, and another that will overwrite. Which is type 1, which is type 2?
 
@@ -17,6 +21,15 @@ Bonus: Are there privacy implications to this, why or why not?
 ```
 Your answer...
 ```
+Type 1: Overwrite Old Data. When the customer's address changes, the records directly overwrites the old address without retaining any historical records. The customer_address table only stores the customer's most recent address. This approach has relatively lower privacy risks since the system only keeps the latest data, but it is still essential to ensure the security of the data.
+
+![type 1](./q3_type1.drawio.png)
+
+Type 2 (SCD-Slowly Changing Dimensions): Retain Historical Records. Every time a customer's address changes, a new record is created, preserving the historical addresses. Each record is assigned an address_number, along with start and end dates. This may involve privacy concerns, especially when storing data over a long period of time. Ensuring proper privacy protection is necessary to prevent data breaches.
+
+![type 2](./q3_type2.drawio.png)
+
+
 
 ## Question 4
 Review the AdventureWorks Schema [here](https://i.stack.imgur.com/LMu4W.gif)
@@ -25,6 +38,11 @@ Highlight at least two differences between it and your ERD. Would you change any
 ```
 Your answer...
 ```
+
+The tables and structure of AdventureWorks are more complex, covering more domains, and each table considers a wider range of variables. I think I can improve in the following two areas:
+
+1. The customer table could include a modified_date field, as customer information may change, making it more dynamic.
+2. The sales table could include an online_flag field, since many purchases are now made online, and customers may not necessarily buy from physical stores.
 
 # Criteria
 
